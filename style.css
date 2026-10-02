@@ -59,3 +59,7 @@ linear-gradient(145deg,#f7f1e6,#eee8dc 55%,#f8f3e9);overflow:hidden;color:#2e142
 .tap-open{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(18px,3vw,28px);letter-spacing:3px;margin-top:34px;z-index:2;animation:tapPulse 1.8s ease-in-out infinite}@keyframes tapPulse{50%{opacity:.5;transform:translateY(2px)}}
 .intro.opened{opacity:0;visibility:hidden;transform:scale(1.04);filter:blur(7px);transition:all 1s cubic-bezier(.2,.7,.2,1)}
 @media(max-width:700px){.intro{justify-content:center}.intro-names{margin-bottom:28px}.envelope{width:86vw;height:48vw;min-height:190px}.envelope:before{border-width:0 0 24vw 43vw}.envelope:after{border-width:24vw 0 0 43vw}.wax{width:66px;height:66px}.tap-open{margin-top:28px}}
+
+/* V7 — new user-selected hero photo */
+.hero.hero-new{background-image:linear-gradient(rgba(59,15,43,.10),rgba(59,15,43,.50)),url('images/hero-new.jpeg');background-size:cover;background-position:center 42%}
+@media(max-width:700px){.hero.hero-new{background-position:center 38%}}
