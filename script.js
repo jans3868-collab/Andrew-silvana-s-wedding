@@ -10,8 +10,11 @@ const galleryItems=document.querySelectorAll('.gallery figure');
 const galleryObserver=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){const items=[...galleryItems];const i=items.indexOf(entry.target);setTimeout(()=>entry.target.classList.add('show'),Math.max(0,i)*90);galleryObserver.unobserve(entry.target)}})},{threshold:.12});
 galleryItems.forEach(el=>galleryObserver.observe(el));
 
-// Background music: starts after the guest opens the invitation (browser-friendly).
+// Background music: attempt autoplay immediately; retry on the first user interaction if the browser blocks audible autoplay.
 const bgMusic=document.getElementById('bgMusic'); const musicToggle=document.getElementById('musicToggle');
 function startMusic(){ if(!bgMusic) return; bgMusic.volume=.38; bgMusic.play().then(()=>{musicToggle.textContent='❚❚'}).catch(()=>{}); }
-document.getElementById('seal')?.addEventListener('click',()=>setTimeout(startMusic,450));
+// Browsers may block audible autoplay until the visitor interacts with the page.
+window.addEventListener('load',()=>{ startMusic(); });
+document.addEventListener('pointerdown',()=>{ if(bgMusic?.paused) startMusic(); },{once:true});
+document.getElementById('seal')?.addEventListener('click',()=>startMusic());
 musicToggle?.addEventListener('click',()=>{ if(bgMusic.paused){startMusic()}else{bgMusic.pause();musicToggle.textContent='♫'} });
